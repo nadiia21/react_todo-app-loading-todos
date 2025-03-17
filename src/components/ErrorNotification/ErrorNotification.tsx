@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 type Props = {
   errorMsg: string;
@@ -10,22 +10,25 @@ export const ErrorNotification: React.FC<Props> = ({
   errorMsg,
   changeError,
 }) => {
-  const errorDiv = useRef<null | HTMLDivElement>(null);
-
   useEffect(() => {
-    setTimeout(() => {
-      errorDiv.current?.classList.add('hidden');
+    if (!errorMsg) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      changeError('');
     }, 3000);
-  }, [errorMsg]);
+
+    return () => clearTimeout(timer);
+  }, [errorMsg, changeError]);
 
   return (
     <div
       data-cy="ErrorNotification"
       className={classNames(
         'notification is-danger is-light has-text-weight-normal',
-        { hidden: errorMsg.length === 0 },
+        { hidden: !errorMsg.length },
       )}
-      ref={errorDiv}
     >
       <button
         data-cy="HideErrorButton"

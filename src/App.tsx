@@ -108,12 +108,12 @@ export const App: React.FC = () => {
 
         {!loading && <TodoList todos={visibleTodos} />}
 
-        <Footer changeVisibleTodos={changeVisibleTodos} filtered={filtered} />
+        {!todos.length && (
+          <Footer changeVisibleTodos={changeVisibleTodos} filtered={filtered} />
+        )}
       </div>
 
-      {errorMsg.length !== 0 && (
-        <ErrorNotification errorMsg={errorMsg} changeError={changeError} />
-      )}
+      <ErrorNotification errorMsg={errorMsg} changeError={changeError} />
     </div>
   );
 };
