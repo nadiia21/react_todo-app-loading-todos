@@ -5,13 +5,18 @@ import classNames from 'classnames';
 type Props = {
   changeVisibleTodos: (el: FilterTodo) => void;
   filtered: FilterTodo;
+  uncompletedTodos: number;
 };
 
-export const Footer: React.FC<Props> = ({ changeVisibleTodos, filtered }) => {
+export const Footer: React.FC<Props> = ({
+  changeVisibleTodos,
+  filtered,
+  uncompletedTodos,
+}) => {
   return (
     <footer className="todoapp__footer" data-cy="Footer">
       <span className="todo-count" data-cy="TodosCounter">
-        3 items left
+        {uncompletedTodos} items left
       </span>
 
       {/* Active link should have the 'selected' class */}

@@ -46,6 +46,10 @@ export const App: React.FC = () => {
     return filteredTodos;
   }, [filtered, todos]);
 
+  const uncompletedTodos = useMemo(() => {
+    return visibleTodos.filter(td => !td.completed).length;
+  }, [visibleTodos]);
+
   const changeVisibleTodos = (el: FilterTodo) => {
     setFiltered(el);
   };
@@ -109,7 +113,11 @@ export const App: React.FC = () => {
         {!loading && <TodoList todos={visibleTodos} />}
 
         {visibleTodos.length && (
-          <Footer changeVisibleTodos={changeVisibleTodos} filtered={filtered} />
+          <Footer
+            changeVisibleTodos={changeVisibleTodos}
+            filtered={filtered}
+            uncompletedTodos={uncompletedTodos}
+          />
         )}
       </div>
 
