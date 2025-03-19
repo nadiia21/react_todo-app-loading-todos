@@ -108,7 +108,7 @@ export const App: React.FC = () => {
 
         {!loading && <TodoList todos={visibleTodos} />}
 
-        {!todos.length && (
+        {visibleTodos.length && (
           <Footer changeVisibleTodos={changeVisibleTodos} filtered={filtered} />
         )}
       </div>
