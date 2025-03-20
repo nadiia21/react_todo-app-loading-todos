@@ -28,7 +28,7 @@ export const Footer: React.FC<Props> = ({
             className={classNames('filter__link', {
               selected: filtered === title,
             })}
-            data-cy="FilterLinkAll"
+            data-cy={`FilterLink${title}`}
             onClick={() => changeVisibleTodos(title as FilterTodo)}
           >
             {title}
